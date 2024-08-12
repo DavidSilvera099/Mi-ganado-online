@@ -10,7 +10,7 @@ const header = () => {
                 </a>
                 <ul className="flex justify-center gap-x-8">
                     <li className="font-semibold">
-                        <a className="text-VerdeMusgo hover:text-Turquesa" aria-current="page" href="/AnimalsView">Animales</a>
+                        <Link className="text-VerdeMusgo hover:text-Turquesa" to="/AnimalsView">Animales</Link>
                     </li>
                     <li className="font-semibold">
                         <Link className="text-VerdeMusgo hover:text-Turquesa" to="/AdminView">Administrar</Link>
