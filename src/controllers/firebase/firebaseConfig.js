@@ -26,6 +26,7 @@ export async function uploadFile(file) {
     await uploadBytes(storageRef, file)
     const url = await getDownloadURL(storageRef)
     return url
+    
 }
 
 // Función para guardar los datos del animal en Firestore
@@ -38,3 +39,4 @@ export const saveAnimalData = async (animalData) => {
     throw new Error("Failed to save animal data");
   }
 };
+
