@@ -16,7 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<AnimalsView />} />
-        <Route path="main--miganado.netlify.app/ShowAnimals" element={<ShowAnimals />} />
+        <Route path="/ShowAnimals" element={<ShowAnimals />} />
         <Route path="/EditAnimal/:id" element={<EditAnimalForm />} />
         <Route path="/AnimalForm" element={<AnimalForm />} />
         <Route path='/AdminAnimals' element={<AdminAnimals />} />
