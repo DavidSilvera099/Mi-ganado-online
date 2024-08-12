@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const header = () => {
     return (
@@ -12,7 +13,7 @@ const header = () => {
                         <a className="text-VerdeMusgo hover:text-Turquesa" aria-current="page" href="/AnimalsView">Animales</a>
                     </li>
                     <li className="font-semibold">
-                        <a className="text-VerdeMusgo hover:text-Turquesa" href="/AdminView">Administrar</a>
+                        <Link className="text-VerdeMusgo hover:text-Turquesa" to="/AdminView">Administrar</Link>
                     </li>
                 </ul>
             </div>
