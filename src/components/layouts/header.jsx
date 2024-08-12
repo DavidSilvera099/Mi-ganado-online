@@ -5,7 +5,7 @@ const header = () => {
         <nav className="text-lg p-4 shadow-lg w-full mb-4">
             <div className="container mx-auto gap-y-3 flex flex-col items-center">
                 <a className='w-32' href='/'>
-                    <img src="../../../public/logovac.png" alt="Logo" className="object-cover" />
+                    <img src="/logovac.png" alt="Logo" className="object-cover" />
                 </a>
                 <ul className="flex justify-center gap-x-8">
                     <li className="font-semibold">
