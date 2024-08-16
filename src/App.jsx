@@ -9,6 +9,7 @@ import Header from './components/layouts/header.jsx';
 import AnimalsView from './components/pages/AnimalsView.jsx';
 import AdminView from './components/pages/AdminView.jsx';
 import AnimalDetailsPage from './components/pages/AnimalDetailsPage.jsx'; 
+import Footer from './components/layouts/Footer.jsx';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/AdminView' element={<AdminView />} />
         <Route path="/animals/:animalId" element={<AnimalDetailsPage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
