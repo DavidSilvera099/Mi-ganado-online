@@ -42,7 +42,7 @@ const AnimalEditCard = ({ animal, onDelete, editPath }) => {
                     loading='lazy'
                 />
                 <div className="p-4">
-                    <h5 className="text-xl font-bold text-Azul mb-2">{animal.name || 'Sin nombre'}</h5>
+                    <h5 className="text-xl font-bold text-Azul mb-2">{animal.Nombre || 'Sin nombre'}</h5>
                     <p className="text-Turquesa">
                         <strong>Sexo:</strong> {animal.Sexo || 'N/A'} <br />
                         <strong>Tipo:</strong> {animal.Tipo || 'N/A'} <br />

@@ -21,16 +21,29 @@ const AnimalForm = () => {
     Nacimiento: ''
   });
 
+  const [preview, setPreview] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setForm({
-      ...form,
-      [name]: files ? files[0] : value
-    });
+    if (files) {
+      const file = files[0];
+      setForm({
+        ...form,
+        [name]: file
+      });
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setForm({
+        ...form,
+        [name]: value
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       let photoUrl = '';
@@ -48,6 +61,8 @@ const AnimalForm = () => {
         text: 'Formulario enviado con éxito!',
         icon: 'success',
         confirmButtonText: 'Ok',
+      }).then(() => {
+        setIsSubmitting(false);
       });
 
       setForm({
@@ -64,6 +79,7 @@ const AnimalForm = () => {
         Estado: '',
         Nacimiento: ''
       });
+      setPreview(null);
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -71,12 +87,22 @@ const AnimalForm = () => {
         text: 'Error al enviar el formulario',
         icon: 'error',
         confirmButtonText: 'Ok',
+      }).then(() => {
+        setIsSubmitting(false);
       });
     }
   };
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleEditPhoto = () => {
+    setPreview(null);
+    setForm({
+      ...form,
+      Foto: null
+    });
   };
 
   return (
@@ -86,7 +112,14 @@ const AnimalForm = () => {
         <h2 className="text-2xl font-bold text-center mb-6 text-Turquesa">Añadir animal</h2>
         <form onSubmit={handleSubmit} className="container mx-auto mt-4 p-4">
           <div className="mb-4">
-            <input type="file" name="Foto" id="Foto" onChange={handleChange} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:text-Turquesa hover:file:text-white hover:file:bg-Turquesa" />
+            {preview ? (
+              <div>
+                <img src={preview} alt="Vista previa" className="block w-full h-auto mb-2" />
+                <button type="button" onClick={handleEditPhoto} className="p-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Editar Foto</button>
+              </div>
+            ) : (
+              <input type="file" name="Foto" id="Foto" onChange={handleChange} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:text-Turquesa hover:file:text-white hover:file:bg-Turquesa" />
+            )}
           </div>
           <div className="mb-4">
             <input type="text" name="Nombre" id="Nombre" value={form.Nombre} onChange={handleChange} className="block w-full p-2 border rounded-md shadow-sm" placeholder="Nombre" />
@@ -138,13 +171,13 @@ const AnimalForm = () => {
             <label htmlFor="Nacimiento" className="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
             <input type="date" name="Nacimiento" id="Nacimiento" value={form.Nacimiento} onChange={handleChange} className="block w-full p-2 border rounded-md shadow-sm" />
           </div>
-          <button type="submit" className="w-full p-3 bg-Turquesa text-white rounded-md hover:bg-VerdeOscuro">Enviar</button>
+          {!isSubmitting && (
+            <button type="submit" className="w-full p-3 bg-Turquesa text-white rounded-md hover:bg-VerdeOscuro">Enviar</button>
+          )}
         </form>
       </div>
     </div>
-
   );
 };
-
 
 export default AnimalForm;
