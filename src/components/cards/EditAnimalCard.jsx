@@ -38,7 +38,7 @@ const AnimalEditCard = ({ animal, onDelete, editPath }) => {
                 <img
                     src={animal.photoUrl || 'https://via.placeholder.com/150'}
                     className="object-cover h-60 w-full"
-                    alt={animal.name || 'Animal image'}
+                    alt={animal.Nombre || 'Animal image'}
                     loading='lazy'
                 />
                 <div className="p-4">

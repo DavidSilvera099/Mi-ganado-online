@@ -52,7 +52,15 @@ const EditAnimalForm = () => {
     };
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setAnimal((prevAnimal) => ({ ...prevAnimal, photoUrl: reader.result }));
+            };
+            reader.readAsDataURL(selectedFile);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -84,7 +92,23 @@ const EditAnimalForm = () => {
             <h2 className="text-2xl font-bold text-center mb-6 text-VerdeMusgo">Editar Animal</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="form-group">
-                    <input type="file" name="photo" id="photo" onChange={handleFileChange} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:text-Turquesa hover:file:text-white hover:file:bg-Turquesa" />
+                    {animal.photoUrl && (
+                        <img src={animal.photoUrl} loading="lazy" alt="Vista previa" className="w-[100dvw] object-cover aspect-square h-auto mb-4" />
+                    )}
+                    <input
+                        type="file"
+                        name="photo"
+                        id="photo"
+                        onChange={handleFileChange}
+                        className="hidden"
+                    />
+                    <button
+                        type="button"
+                        onClick={() => document.getElementById('photo').click()}
+                        className="block py-2 w-full bg-Turquesa text-white rounded-md hover:bg-VerdeOscuro"
+                    >
+                        Editar foto
+                    </button>
                 </div>
                 {Object.entries(animal).map(([key, value]) => {
                     if (key in selectOptions) {
