@@ -111,11 +111,11 @@ const AnimalForm = () => {
       <div className="container max-w-2xl mx-auto mt-4 p-4 shadow-lg rounded-lg bg-white ">
         <h2 className="text-2xl font-bold text-center mb-6 text-Turquesa">Añadir animal</h2>
         <form onSubmit={handleSubmit} className="container mx-auto mt-4 p-4">
-          <div className="mb-4">
+          <div className="mb-8">
             {preview ? (
               <div>
                 <img src={preview} alt="Vista previa" className="block w-full h-auto mb-2" />
-                <button type="button" onClick={handleEditPhoto} className="p-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Editar Foto</button>
+                <button type="button" onClick={handleEditPhoto} className="py-2 w-full bg-Turquesa text-white rounded-md hover:bg-VerdeOscuro">Editar Foto</button>
               </div>
             ) : (
               <input type="file" name="Foto" id="Foto" onChange={handleChange} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:text-Turquesa hover:file:text-white hover:file:bg-Turquesa" />
