@@ -114,7 +114,7 @@ const AnimalForm = () => {
           <div className="mb-8">
             {preview ? (
               <div>
-                <img src={preview} alt="Vista previa" className="block w-full h-auto mb-2" />
+                <img src={preview} loading="lazy" alt="Vista previa" className="block w-[100dvw] object-cover aspect-square h-auto mb-2" />
                 <button type="button" onClick={handleEditPhoto} className="py-2 w-full bg-Turquesa text-white rounded-md hover:bg-VerdeOscuro">Editar Foto</button>
               </div>
             ) : (
