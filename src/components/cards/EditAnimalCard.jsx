@@ -1,6 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import logoVaca from '../../../public/logovac.png';
 
 const AnimalEditCard = ({ animal, onDelete, editPath }) => {
     const handleDelete = (id) => {
@@ -36,10 +36,11 @@ const AnimalEditCard = ({ animal, onDelete, editPath }) => {
         <div className="relative mb-4 w-full max-w-md px-2">
             <div className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
                 <img
-                    src={animal.photoUrl || 'https://via.placeholder.com/150'}
+                    src={animal.photoUrl || logoVaca}
                     className="object-cover h-60 w-full"
                     alt={animal.Nombre || 'Animal image'}
                     loading='lazy'
+
                 />
                 <div className="p-4">
                     <h5 className="text-xl font-bold text-Azul mb-2">{animal.Nombre || 'Sin nombre'}</h5>
