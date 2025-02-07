@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { uploadFile, saveAnimalData } from "../../controllers/firebase/firebaseConfig";
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
+
 
 const AnimalForm = () => {
   const navigate = useNavigate();
@@ -24,15 +26,25 @@ const AnimalForm = () => {
   const [preview, setPreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value, files } = e.target;
     if (files) {
       const file = files[0];
-      setForm({
-        ...form,
-        [name]: file
-      });
-      setPreview(URL.createObjectURL(file));
+      try {
+        const options = {
+          maxSizeMB: 0.25, // Tamaño máximo de la imagen en MB
+          maxWidthOrHeight: 1920, // Dimensiones máximas
+          useWebWorker: true,
+        };
+        const compressedFile = await imageCompression(file, options);
+        setForm({
+          ...form,
+          [name]: compressedFile
+        });
+        setPreview(URL.createObjectURL(compressedFile));
+      } catch (error) {
+        console.error("Error al comprimir la imagen:", error);
+      }
     } else {
       setForm({
         ...form,
